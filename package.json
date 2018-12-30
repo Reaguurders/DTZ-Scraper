@@ -9,11 +9,9 @@
   "author": "Ruben Rutten <ruben@rubenrutten.nl> (https://twitter.com/Cyberuben)",
   "license": "ISC",
   "dependencies": {
-    "cron": "^1.6.0",
     "dotenv": "^6.2.0",
     "es6-request": "^2.4.0",
     "google-spreadsheet": "https://github.com/Reaguurders/node-google-spreadsheet",
-    "moment": "^2.23.0",
-    "puppeteer": "^1.11.0"
+    "moment": "^2.23.0"
   }
 }
