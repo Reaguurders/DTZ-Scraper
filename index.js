@@ -69,6 +69,29 @@ const fetchData = async (rows) => {
 		row.lengte = moment().startOf("day").add(item.media[0].duration, "seconds").format("HH:mm:ss");
 		row.thumbnail = item.stills.still;
 
+		if (item.media[0].variants.length === 1) {
+			if (item.media[0].variants[0].uri.substr(0, 8) === "youtube:") {
+				row["media-url"] = `https://youtube.com/watch?v=${item.media[0].variants[0].uri.replace("youtube:", "")}`;
+			} else {
+				row["media-url"] = item.media[0].variants[0].uri;
+			}
+		} else {
+			// See if there's a 720p version
+			let variant = item.media[0].variants.find((variant) => variant.version === "720p");
+			// See if there's a tablet version
+			if (!variant) {
+				variant = item.media[0].variants.find((variant) => variant.version === "tablet");
+			}
+			// See if there's a mobile version
+			if (!variant) {
+				variant = item.media[0].variants.find((variant) => variant.version === "mobile");
+			}
+
+			if (variant) {
+				row["media-url"] = variant.uri;
+			}
+		}
+
 		row.save((err) => {
 			if (err) {
 				console.error(`[${moment().format("YYYY-MM-DD HH:mm:ss")}] Row ${row.nummer}`, err);
