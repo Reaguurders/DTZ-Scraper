@@ -120,6 +120,11 @@ new Promise((resolve, reject) => {
 		});
 	}
 
+	// Run the updater every 15 seconds
+	setInterval(() => {
+		updater();
+	}, 15000);
+
 	return updater();
 })
 .catch((err) => {
