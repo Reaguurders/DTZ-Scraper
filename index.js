@@ -92,6 +92,8 @@ const fetchData = async (rows) => {
 			}
 		}
 
+		cache[row.nummer] = row["dumpert-link"];
+
 		row.save((err) => {
 			if (err) {
 				console.error(`[${moment().format("YYYY-MM-DD HH:mm:ss")}] Row ${row.nummer}`, err);
