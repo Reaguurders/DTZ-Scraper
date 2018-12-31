@@ -130,7 +130,7 @@ new Promise((resolve, reject) => {
 	
 			// For all rows that already have data set, add the URL to the cache
 			rows.filter((row) => {
-				return row["dumpert-link"] && row["dumpert-link"].substr(0, 8) === "https://" && row.lengte;
+				return row["dumpert-link"] && row["dumpert-link"].substr(0, 8) === "https://" && !cache[row.nummer] && row.lengte;
 			})
 			.forEach((row) => {
 				cache[row.nummer] = row["dumpert-link"];
